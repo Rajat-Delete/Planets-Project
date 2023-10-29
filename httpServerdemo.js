@@ -1,7 +1,7 @@
 const http = require('http');
 
 const port = 3000;
-const friendList = [{id : 1,name : 'Issac Newton',}];
+const friendList = [{id : 1,name : 'Issac Newton'}];
 
 const server = http.createServer((req,res)=>{
     // console.log('req fired is', req);
@@ -13,7 +13,8 @@ const server = http.createServer((req,res)=>{
             console.log('data is ',friendsData);
             friendList.push(JSON.parse(friendsData));
         });
-        console.log(`friendList is ${friendList}`);
+        req.pipe(res);
+        //console.log(`friendList is ${friendList}`);
     }
     else if(req.method ==='GET' && req.url === '/friends'){
         res.statusCode = 200;
